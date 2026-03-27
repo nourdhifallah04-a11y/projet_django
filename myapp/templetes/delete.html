@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends "base.html" %}
+{% block content %}
+<h2>Supprimer Profil</h2>
+<p>Voulez-vous vraiment supprimer ce profil ?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Oui, supprimer</button>
+</form>
+<a href="{% url 'profil_list' %}">Annuler</a>
+{% endblock %}button>
+</form>
+</body>
+</html>
