@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Profil nutritionnel{% endblock %}
+
+{% block content %}
+<section class="card">
+  <div class="page-header">
+    <div>
+      <h1>Profil nutritionnel</h1>
+      <p>Consultez et mettez a jour vos informations nutritionnelles.</p>
+    </div>
+    {% if profil %}
+      <a class="button secondary" href="{% url 'profil_update' profil.pk %}">Modifier</a>
+    {% else %}
+      <a class="button" href="{% url 'profil_create' %}">Creer mon profil</a>
+    {% endif %}
+  </div>
+
+  {% if profil %}
+    <dl class="profile-grid">
+      <div>
+        <dt>Age</dt>
+        <dd>{{ profil.age }} ans</dd>
+      </div>
+      <div>
+        <dt>Poids</dt>
+        <dd>{{ profil.poids }} kg</dd>
+      </div>
+      <div>
+        <dt>Taille</dt>
+        <dd>{{ profil.taille }} cm</dd>
+      </div>
+      <div>
+        <dt>Objectif</dt>
+        <dd>{{ profil.objectif }}</dd>
+      </div>
+      <div>
+        <dt>Regime</dt>
+        <dd>{{ profil.regime|default:"Non precise" }}</dd>
+      </div>
+    </dl>
+    <form method="post" action="{% url 'profil_delete' profil.pk %}">
+      {% csrf_token %}
+      <button class="button danger" type="submit">Supprimer le profil</button>
+    </form>
+  {% else %}
+    <p>Aucun profil nutritionnel n'est encore enregistre pour votre compte.</p>
+  {% endif %}
+</section>
+{% endblock %}

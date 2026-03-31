@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Supprimer le profil{% endblock %}
+
+{% block content %}
+<section class="card">
+  <h1>Supprimer le profil</h1>
+  <p>Confirmez la suppression du profil nutritionnel de {{ profil.user.username }}.</p>
+  <form method="post">
+    {% csrf_token %}
+    <div class="actions">
+      <button class="button danger" type="submit">Confirmer la suppression</button>
+      <a class="button secondary" href="{% url 'profil_list' %}">Annuler</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
